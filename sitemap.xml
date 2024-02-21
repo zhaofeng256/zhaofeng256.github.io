@@ -11,7 +11,25 @@
   </url>
   
   <url>
-    <loc>http://zhaofeng256.github.io/2024/02/21/hello-world/</loc>
+    <loc>http://zhaofeng256.github.io/2024/02/21/notepad++%20%E5%8E%BB%E9%87%8D/</loc>
+    
+    <lastmod>2024-02-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/tags/index.html</loc>
+    
+    <lastmod>2024-02-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/categories/index.html</loc>
     
     <lastmod>2024-02-21</lastmod>
     
@@ -28,6 +46,48 @@
   </url>
 
   
+  <url>
+    <loc>http://zhaofeng256.github.io/tags/notepad/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/tags/win10/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/tags/wifi/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/tags/%E7%83%AD%E7%82%B9/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/categories/windows/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhaofeng256.github.io/categories/windows/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2024-02-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
