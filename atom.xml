@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://zhaofeng256.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://zhaofeng256.github.io/"/>
+  <updated>2024-02-21T09:09:36.484Z</updated>
+  <id>http://zhaofeng256.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://zhaofeng256.github.io/2024/02/21/win10%E7%94%B5%E8%84%91%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C%E5%88%9B%E5%BB%BA%E7%83%AD%E7%82%B9/"/>
+    <id>http://zhaofeng256.github.io/2024/02/21/win10%E7%94%B5%E8%84%91%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C%E5%88%9B%E5%BB%BA%E7%83%AD%E7%82%B9/</id>
+    <published>2024-02-21T08:24:32.588Z</published>
+    <updated>2024-02-21T09:09:36.484Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="win10电脑有线网络创建热点"><a href="#win10电脑有线网络创建热点" class="headerlink" title="win10电脑有线网络创建热点"></a>win10电脑有线网络创建热点</h1><p>插入USB无线网卡，管理员模式启动powershell</p><p>首先检测无线网卡是否<strong>支持承载网络，</strong>不支持的无法开热点</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh wlan show drivers</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    驱动程序                  : 802.11n USB 无线 LAN 卡</span><br><span class="line">    供应商                    : Ralink Technology, Corp.</span><br><span class="line">    提供程序                  : Microsoft</span><br><span class="line">    日期                      : 2015/4/21</span><br><span class="line">    版本                      : 5.1.22.0</span><br><span class="line">    INF 文件                  : netr28ux.inf</span><br><span class="line">    类型                      : 本机 WLAN 驱动程序</span><br><span class="line">    支持的无线电类型          : 802.11b 802.11g 802.11n</span><br><span class="line">    支持 FIPS 140-2 模式: 是</span><br><span class="line">    支持 802.11w 管理帧保护 : 是</span><br><span class="line">    支持的承载网络  : 是</span><br></pre></td></tr></table></figure><p>1.原无线网卡名称修改为wlan0, USB 网卡修改为wlan1</p><p>2.禁用原无线网卡（不支持承载网络）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh interface set interface name=&quot;wlan0&quot; admin=disabled</span><br></pre></td></tr></table></figure><p>3.设置热点ssid和password</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netsh wlan set hostednetwork mode=allow ssid=hot key=hot123456</span><br><span class="line">承载网络模式已设置为允许。</span><br><span class="line">已成功更改承载网络的 SSID。</span><br><span class="line">已成功更改托管网络的用户密钥密码。</span><br></pre></td></tr></table></figure><p>4.创建虚拟网卡 “本地连接*11”</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netsh wlan start hostednetwork</span><br><span class="line">已启动承载网络。</span><br></pre></td></tr></table></figure><p>5.宽带连接联网</p><p>6.右键宽带连接，选择属性–&gt;共享,勾选允许其他网络用户通过此计算机的internet连接来连接，家庭网络连接</p><p>选择刚刚创建的“本地连接*11”，确定</p><p><img src="http://zhaofeng256.github.io/2024/02/21/win10%E7%94%B5%E8%84%91%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C%E5%88%9B%E5%BB%BA%E7%83%AD%E7%82%B9/c7a62df70e8c9ad0be24e37626d00685.png" alt="c7a62df70e8c9ad0be24e37626d00685.png"></p><p>7.开机时需要先连接宽带，再重新打开热点</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh wlan start hostednetwork</span><br></pre></td></tr></table></figure><p>8.如何关闭热点</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh wlan stop hostednetwork</span><br></pre></td></tr></table></figure><p>❤️</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;win10电脑有线网络创建热点&quot;&gt;&lt;a href=&quot;#win10电脑有线网络创建热点&quot; class=&quot;headerlink&quot; title=&quot;win10电脑有线网络创建热点&quot;&gt;&lt;/a&gt;win10电脑有线网络创建热点&lt;/h1&gt;&lt;p&gt;插入USB无线网卡，管理员模式启动p</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://zhaofeng256.github.io/2024/02/21/hello-world/"/>
+    <id>http://zhaofeng256.github.io/2024/02/21/hello-world/</id>
+    <published>2024-02-21T08:18:10.206Z</published>
+    <updated>2024-02-21T08:18:10.207Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
